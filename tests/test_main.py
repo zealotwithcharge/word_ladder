@@ -41,6 +41,10 @@ def test__verify_word_ladder_7():
 def test__verify_word_ladder_8():
     assert not verify_word_ladder(['stone', 'shone', 'phone', 'phony', 'peony', 'penny', 'benny', 'bonny', 'money'])
 
+# tests for memory management correctness
+def test__verify_word_ladder_9():
+    assert verify_word_ladder(['chins', 'chine'])
+
 
 def test__word_ladder_1():
     ladder = word_ladder('stone','stone')
