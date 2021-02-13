@@ -32,21 +32,21 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     the function returns `None`.
     '''
 
-    if start_word==end_word:
+    if start_word == end_word:
         return [start_word]
 
     with open(dictionary_file) as f:
         words = f.readlines()
-        words = set([ word.strip() for word in words ])
+        words = set([word.strip() for word in words])
 
     queue = deque([[start_word]])
-    while len(queue)>0:
+    while len(queue) > 0:
         stack = queue.pop()
         for word in list(words):
-            if _adjacent(word,stack[-1]):
+            if _adjacent(word, stack[-1]):
                 stack_copy = copy.deepcopy(stack)
                 stack_copy.append(word)
-                if word==end_word:
+                if word == end_word:
                     return stack_copy
                 queue.appendleft(stack_copy)
                 words.remove(word)
@@ -60,8 +60,8 @@ def verify_word_ladder(ladder):
 
     if ladder == []:
         return False
-    for i in range(len(ladder)-1):
-        if not _adjacent(ladder[i], ladder[i+1]):
+    for i in range(len(ladder) - 1):
+        if not _adjacent(ladder[i], ladder[i + 1]):
             return False
     return True
 
@@ -81,8 +81,8 @@ def _adjacent(word1, word2):
         return False
 
     num_diffs = 0
-    for c1,c2 in zip(word1,word2):
-        if c1!=c2:
-            num_diffs+=1
+    for c1, c2 in zip(word1, word2):
+        if c1 != c2:
+            num_diffs += 1
 
-    return num_diffs==1
+    return num_diffs == 1
