@@ -100,7 +100,6 @@ def test__verify_word_ladder_11():
 def test__verify_word_ladder_11b():
     assert verify_word_ladder(['chink', 'chine'])
 
-
 def test__word_ladder_1():
     ladder = word_ladder('stone','stone')
     assert verify_word_ladder(ladder) and len(ladder)==1
