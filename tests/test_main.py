@@ -188,5 +188,5 @@ def test__word_ladder_fuzz():
         word2 = random.choice(words)
         res1 = word_ladder(word1, word2)
         if res1 is not None:
-            res2 = list(reversed(word_ladder(word2, word1)))
-            assert res1 == res2 or res1 is res2
+            res2 = word_ladder(word2, word1)
+            assert res1 is None and res2 is None or len(res1) == len(res2)
