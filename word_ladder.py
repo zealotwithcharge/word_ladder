@@ -56,6 +56,11 @@ def verify_word_ladder(ladder):
     '''
     Returns True if each entry of the input list is adjacent to its neighbors;
     otherwise returns False.
+
+    >>> verify_word_ladder(['stone', 'shone', 'phone', 'phony'])
+    True
+    >>> verify_word_ladder(['stone', 'shone', 'phony'])
+    False
     '''
 
     if ladder == []:
