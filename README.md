@@ -27,13 +27,14 @@ For example, we can convert a `stone` into `money` using the following ladder:
 
 ```
 stone
-atone
-alone
-clone
-coons
-conns
-cones
-coney
+shone
+shote
+shots
+soots
+moots
+motts
+motes
+motey
 money
 ```
 
