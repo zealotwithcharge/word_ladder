@@ -81,7 +81,8 @@ Complete the following tasks:
 1. Update the `README.md` file so that the travis button points to your repo
 1. Implement the `word_ladder`, `verify_word_ladder`, and `_adjacent` functions so that all test cases in `tests/test_main.py` pass
 
-Your grade will be the percentage of test cases that successfully pass in travis.
+~~Your grade will be the percentage of test cases that successfully pass in travis.~~
+You will receive -1 point for each failing test case.
 
 ## Submission
 
