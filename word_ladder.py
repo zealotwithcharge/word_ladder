@@ -2,7 +2,8 @@
 
 from collections import deque
 import copy
-import pprint
+
+
 def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     '''
     Returns a list satisfying the following properties:
@@ -18,12 +19,14 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     ```
     may give the output
     ```
-    ['stone', 'shone', 'phone', 'phony', 'peony', 'penny', 'benny', 'bonny', 'boney', 'money']
+    ['stone', 'shone', 'phone', 'phony', 'peony', 'penny',
+    'benny', 'bonny', 'boney', 'money']
     ```
     but the possible outputs are not unique,
     so you may also get the output
     ```
-    ['stone', 'shone', 'shote', 'shots', 'soots', 'hoots', 'hooty', 'hooey', 'honey', 'money']
+    ['stone', 'shone', 'shote', 'shots', 'soots', 'hoots',
+    'hooty', 'hooey', 'honey', 'money']
     ```
     (We cannot use doctests here because the outputs are not unique.)
 
@@ -34,41 +37,43 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     stack.append(start_word)
     q = deque([])
     q.append(stack)
-    answers = []
     if start_word == end_word:
         return [start_word]
-    with open(dictionary_file,'r',encoding = 'utf-8') as dict_file:
+    with open(dictionary_file, 'r', encoding='utf-8') as dict_file:
         dictionary = dict_file.read()
         dictionary = dictionary.split('\n')
         while len(q) != 0:
             working_stack = q.popleft()
-            dict_copy = copy.deepcopy(dictionary) 
+            dict_copy = copy.deepcopy(dictionary)
             for word in dict_copy:
-                if _adjacent(word,working_stack[-1]):
+                if _adjacent(word, working_stack[-1]):
                     if word == end_word:
                         if end_word not in working_stack:
                             working_stack.append(end_word)
-                        #answers.append(working_stack)
-                        #continue
-                            #pprint.pprint(q)
-                            #for i in range(len(q)):
+                        # answers.append(working_stack)
+                        # continue
+                            # pprint.pprint(q)
+                            # for i in range(len(q)):
                             #    temp = q.popleft()
-                            #    if temp[7] == 'chile' or temp[7] == 'chili' or temp[7] == 'chill':
-                            #        print(temp) 
+                            #    if temp[7] == 'chile' or temp[7] ==
+                            #    'chili' or temp[7] == 'chill':
+                            #        print(temp)
                             return working_stack
                     stack_copy = copy.deepcopy(working_stack)
                     stack_copy.append(word)
                     q += deque([stack_copy])
                     dictionary.remove(word)
-    return 
-    #if answers == []:
+    return
+    # if answers == []:
     #    return
-    #else:
+    # else:
     #    smallest = 0
     #    for i,ladder in enumerate(answers):
     #        if len(answers[smallest]) > len(answers[i]):
     #           smallest = i
     #    return answers[smallest]
+
+
 def verify_word_ladder(ladder):
     '''
     Returns True if each entry of the input list is adjacent to its neighbors;
@@ -80,13 +85,14 @@ def verify_word_ladder(ladder):
     False
     '''
 
-    for i,word in enumerate(ladder):
+    for i, word in enumerate(ladder):
         if i != len(ladder)-1:
-            if not _adjacent(ladder[i],ladder[i+1]):
+            if not _adjacent(ladder[i], ladder[i+1]):
                 return False
     if len(ladder) == 0:
         return False
     return True
+
 
 def _adjacent(word1, word2):
     '''
@@ -98,23 +104,25 @@ def _adjacent(word1, word2):
     >>> _adjacent('stone','money')
     False
     '''
-    
+
     counter = 0
 
-    if abs(len(word1) - len(word2))>1:
+    if abs(len(word1) - len(word2)) > 1:
         return False
-    elif abs(len(word1) - len(word2))==1:
+    elif abs(len(word1) - len(word2)) == 1:
         return word1 in word2 or word2 in word1
     for i in range(len(word1)):
         if word1[i] != word2[i]:
             counter += 1
     return counter == 1
+
+
 def check_links(goal):
-    with open('words5.dict','r',encoding = 'utf-8') as dict_file:
+    with open('words5.dict', 'r', encoding='utf-8') as dict_file:
         dictionary = dict_file.read()
         dictionary = dictionary.split('\n')
         answers = []
         for word in dictionary:
-            if _adjacent(word,goal):
+            if _adjacent(word, goal):
                 answers.append(word)
         print(answers)
